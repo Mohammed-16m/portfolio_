@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mohamed Achou – Software Engineering Student, AI Automation Specialist & Full Stack Developer based in Algeria. Available for freelance projects." />
+  <meta name="keywords" content="Mohamed Achou, software engineer, AI automation, full stack developer, n8n, Android, Algeria" />
+  <meta property="og:title" content="Mohamed Achou – Software Engineer & AI Automation Specialist" />
+  <meta property="og:description" content="Building intelligent software solutions for startups and small businesses." />
+  <meta property="og:type" content="website" />
+  <title>Mohamed Achou – Software Engineer & AI Automation Specialist</title>
+
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <!-- AOS – Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #060811;
+      color: #e5e7eb;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Custom cursor ── */
+    #cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: #6ee7f7;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .15s, height .15s, opacity .15s;
+      mix-blend-mode: difference;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(110,231,247,.35);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform .08s linear, width .2s, height .2s, border-color .2s;
+    }
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width:16px; height:16px; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width:52px; height:52px; border-color: rgba(110,231,247,.6); }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .5;
+    }
+
+    /* ── Typography ── */
+    .font-display { font-family: 'Syne', sans-serif; }
+
+    /* ── Gradient text ── */
+    .grad-text {
+      background: linear-gradient(135deg, #6ee7f7 0%, #3b82f6 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-text-warm {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ef4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Glassmorphism card ── */
+    .glass {
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .glass-hover {
+      transition: background .3s, border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .glass-hover:hover {
+      background: rgba(30, 41, 59, 0.75);
+      border-color: rgba(110,231,247,0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(110,231,247,0.06);
+    }
+
+    /* ── Glow button ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #6ee7f7, #3b82f6);
+      color: #060811;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      letter-spacing: .03em;
+      border-radius: 100px;
+      padding: .75rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: opacity .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 0 30px rgba(110,231,247,.25);
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 0 50px rgba(110,231,247,.45); }
+
+    .btn-ghost {
+      background: transparent;
+      color: #e5e7eb;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      letter-spacing: .03em;
+      border-radius: 100px;
+      padding: .75rem 2rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+    .btn-ghost:hover { border-color: rgba(110,231,247,.4); background: rgba(110,231,247,.06); transform: translateY(-2px); }
+
+    /* ── Animated gradient background ── */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: drift 12s ease-in-out infinite alternate;
+      opacity: .35;
+    }
+    .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, #3b82f6, transparent); top: -200px; left: -200px; animation-duration: 14s; }
+    .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #6ee7f7, transparent); top: 20%; right: -100px; animation-duration: 10s; animation-delay: -3s; }
+    .orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, #a78bfa, transparent); bottom: 0; left: 40%; animation-duration: 16s; animation-delay: -6s; }
+
+    @keyframes drift {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.08); }
+    }
+
+    /* ── Grid overlay ── */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(110,231,247,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110,231,247,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ── Section divider ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(110,231,247,.15), transparent);
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    /* ── Navbar ── */
+    #navbar {
+      transition: background .4s, box-shadow .4s, border-color .4s;
+    }
+    #navbar.scrolled {
+      background: rgba(6,8,17,.85) !important;
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      box-shadow: 0 4px 40px rgba(0,0,0,.4);
+    }
+
+    /* ── Skill badge ── */
+    .skill-badge {
+      background: rgba(110,231,247,.07);
+      border: 1px solid rgba(110,231,247,.15);
+      color: #6ee7f7;
+      font-family: 'Syne', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+    .skill-badge:hover { background: rgba(110,231,247,.14); border-color: rgba(110,231,247,.4); transform: scale(1.04); }
+
+    /* ── Service card ── */
+    .service-icon {
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(110,231,247,.12), rgba(59,130,246,.12));
+      border: 1px solid rgba(110,231,247,.15);
+      font-size: 1.4rem;
+      color: #6ee7f7;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Project card ── */
+    .project-tag {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #6ee7f7;
+      background: rgba(110,231,247,.08);
+      border: 1px solid rgba(110,231,247,.15);
+      padding: .2rem .65rem;
+      border-radius: 100px;
+    }
+
+    /* ── Tech stack icon ── */
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      padding: 1.2rem;
+      border-radius: 16px;
+      background: rgba(17,24,39,.5);
+      border: 1px solid rgba(255,255,255,.05);
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+    .tech-item:hover { transform: translateY(-5px); background: rgba(30,41,59,.7); border-color: rgba(110,231,247,.2); }
+    .tech-item img { width: 36px; height: 36px; object-fit: contain; }
+    .tech-item span { font-size: .72rem; font-weight: 500; color: #9ca3af; }
+
+    /* ── Why Me feature ── */
+    .feature-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, rgba(110,231,247,.4), rgba(110,231,247,.05));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Contact form ── */
+    .form-field {
+      width: 100%;
+      background: rgba(17,24,39,.7);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: .85rem 1.2rem;
+      color: #e5e7eb;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-field:focus { border-color: rgba(110,231,247,.5); box-shadow: 0 0 0 3px rgba(110,231,247,.07); }
+    .form-field::placeholder { color: #4b5563; }
+
+    /* ── Floating nav dot ── */
+    .nav-dot {
+      width: 6px; height: 6px;
+      background: #1f2937;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .nav-dot.active { background: #6ee7f7; transform: scale(1.4); }
+
+    /* ── Status badge ── */
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: .6; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .status-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-ring 1.8s ease-out infinite;
+    }
+
+    /* ── Typewriter cursor ── */
+    .typewriter::after {
+      content: '|';
+      color: #6ee7f7;
+      animation: blink .7s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── Scroll indicator ── */
+    @keyframes bounce-slow {
+      0%,100%{ transform: translateX(-50%) translateY(0); }
+      50%{ transform: translateX(-50%) translateY(8px); }
+    }
+    .scroll-indicator { animation: bounce-slow 2s ease-in-out infinite; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #6ee7f7;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: rgba(110,231,247,.3);
+    }
+    .section-label::before { width: 20px; }
+    .section-label::after  { width: 40px; }
+
+    /* ── Mobile nav ── */
+    #mobile-menu {
+      transform: translateX(100%);
+      transition: transform .35s cubic-bezier(.23,1,.32,1);
+    }
+    #mobile-menu.open { transform: translateX(0); }
+
+    /* ── Misc ── */
+    ::selection { background: rgba(110,231,247,.2); color: #fff; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #060811; }
+    ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+    /* ── Project screenshot upload ── */
+    .project-img-wrap { cursor: default; }
+
+
+
+  </style>
+
+  <!-- Tailwind CSS (generated, production build) -->
+  <style>/*! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:initial}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:initial;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:initial}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]{display:none}*,::backdrop,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#3b82f680;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0}.-bottom-3{bottom:-.75rem}.-right-3{right:-.75rem}.bottom-10{bottom:2.5rem}.left-0{left:0}.left-1\/2{left:50%}.right-0{right:0}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0}.top-4{top:1rem}.top-6{top:1.5rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-0{margin-top:0;margin-bottom:0}.mb-10{margin-bottom:2.5rem}.mb-14{margin-bottom:3.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-7{margin-bottom:1.75rem}.mb-8{margin-bottom:2rem}.mt-1{margin-top:.25rem}.mt-16{margin-top:4rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-12{height:3rem}.h-2{height:.5rem}.h-2\.5{height:.625rem}.h-44{height:11rem}.h-64{height:16rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-2{width:.5rem}.w-2\.5{width:.625rem}.w-64{width:16rem}.w-auto{width:auto}.w-full{width:100%}.w-px{width:1px}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-lg{max-width:32rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1}.scale-110,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.resize-none{resize:none}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-16{gap:4rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.self-stretch{align-self:stretch}.overflow-hidden{overflow:hidden}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-t{border-top-width:1px}.border-accent\/20{border-color:#6ee7f733}.border-white\/10{border-color:#ffffff1a}.border-white\/5{border-color:#ffffff0d}.bg-green-400{--tw-bg-opacity:1;background-color:rgb(74 222 128/var(--tw-bg-opacity))}.bg-white\/10{background-color:#ffffff1a}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.from-accent\/30{--tw-gradient-from:#6ee7f74d var(--tw-gradient-from-position);--tw-gradient-to:#6ee7f700 var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-blue-600\/20{--tw-gradient-from:#2563eb33 var(--tw-gradient-from-position);--tw-gradient-to:#2563eb00 var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-green-600\/20{--tw-gradient-from:#16a34a33 var(--tw-gradient-from-position);--tw-gradient-to:#16a34a00 var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-orange-600\/20{--tw-gradient-from:#ea580c33 var(--tw-gradient-from-position);--tw-gradient-to:#ea580c00 var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-purple-600\/20{--tw-gradient-from:#9333ea33 var(--tw-gradient-from-position);--tw-gradient-to:#9333ea00 var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-accentDim\/10{--tw-gradient-to:#3b82f61a var(--tw-gradient-to-position)}.to-cyan-400\/10{--tw-gradient-to:#22d3ee1a var(--tw-gradient-to-position)}.to-emerald-400\/10{--tw-gradient-to:#34d3991a var(--tw-gradient-to-position)}.to-violet-400\/10{--tw-gradient-to:#a78bfa1a var(--tw-gradient-to-position)}.to-yellow-400\/10{--tw-gradient-to:#facc151a var(--tw-gradient-to-position)}.p-7{padding:1.75rem}.p-8{padding:2rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-28{padding-top:7rem;padding-bottom:7rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pt-24{padding-top:6rem}.pt-5{padding-top:1.25rem}.text-center{text-align:center}.font-display{font-family:Syne,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-5xl{font-size:3rem;line-height:1}.text-7xl{font-size:4.5rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-light{font-weight:300}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.05\]{line-height:1.05}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wide{letter-spacing:.025em}.tracking-widest{letter-spacing:.1em}.text-accent{--tw-text-opacity:1;color:rgb(110 231 247/var(--tw-text-opacity))}.text-blue-400\/30{color:#60a5fa4d}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219/var(--tw-text-opacity))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175/var(--tw-text-opacity))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128/var(--tw-text-opacity))}.text-green-400\/30{color:#4ade804d}.text-orange-400\/30{color:#fb923c4d}.text-purple-400\/30{color:#c084fc4d}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68/var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.text-white\/40{color:#fff6}.text-white\/70{color:#ffffffb3}.outline{outline-style:solid}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.blur{--tw-blur:blur(8px)}.blur,.blur-2xl{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-2xl{--tw-blur:blur(40px)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-filter{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-500{transition-duration:.5s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.ease-out{transition-timing-function:cubic-bezier(0,0,.2,1)}.hover\:text-accent:hover{--tw-text-opacity:1;color:rgb(110 231 247/var(--tw-text-opacity))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width:640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width:768px){.md\:block{display:block}.md\:flex{display:flex}.md\:inline-flex{display:inline-flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.md\:flex-row{flex-direction:row}.md\:p-10{padding:2.5rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}}@media (min-width:1024px){.lg\:grid-cols-10{grid-template-columns:repeat(10,minmax(0,1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.lg\:text-8xl{font-size:6rem;line-height:1}}</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     CUSTOM CURSOR
+═══════════════════════════════════════════ -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="font-display font-bold text-lg tracking-tight flex items-center gap-2">
+      <span class="grad-text">MA</span>
+      <span class="text-white/70 font-light hidden sm:block">/ Dev</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+      <li><a href="#about"    class="hover:text-white transition-colors">About</a></li>
+      <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+      <li><a href="#projects" class="hover:text-white transition-colors">Projects</a></li>
+      <li><a href="#stack"    class="hover:text-white transition-colors">Stack</a></li>
+      <li><a href="#contact"  class="hover:text-white transition-colors">Contact</a></li>
+    </ul>
+
+    <!-- CTA + hamburger -->
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="btn-primary hidden md:inline-flex text-sm py-2.5 px-5">
+        Hire Me
+      </a>
+      <button id="hamburger" class="md:hidden text-gray-400 hover:text-white transition-colors text-xl" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 glass flex flex-col items-center justify-center gap-8 text-2xl font-display font-semibold">
+  <button id="mobile-close" class="absolute top-6 right-6 text-gray-400 text-2xl" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#about"    class="hover:text-accent transition-colors" onclick="closeMobileMenu()">About</a>
+  <a href="#services" class="hover:text-accent transition-colors" onclick="closeMobileMenu()">Services</a>
+  <a href="#projects" class="hover:text-accent transition-colors" onclick="closeMobileMenu()">Projects</a>
+  <a href="#stack"    class="hover:text-accent transition-colors" onclick="closeMobileMenu()">Stack</a>
+  <a href="#contact"  class="hover:text-accent transition-colors" onclick="closeMobileMenu()">Contact</a>
+  <a href="#contact"  class="btn-primary text-base mt-4" onclick="closeMobileMenu()">Hire Me</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated background -->
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
+
+    <!-- Availability badge -->
+    <div class="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-8 text-sm" data-aos="fade-down">
+      <span class="relative status-dot w-2.5 h-2.5 rounded-full bg-green-400 inline-block"></span>
+      <span class="text-gray-300">Available for freelance projects</span>
+      <span class="text-gray-600">·</span>
+      <span class="text-gray-500 flex items-center gap-1"><i class="fa-solid fa-location-dot text-accent text-xs"></i> Algeria</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="font-display font-extrabold leading-[1.05] mb-6" data-aos="fade-up" data-aos-delay="80">
+      <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white">Mohamed</span>
+      <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl grad-text">Achou</span>
+    </h1>
+
+    <!-- Typewriter role -->
+    <p class="font-display text-lg sm:text-xl md:text-2xl text-gray-400 mb-4" data-aos="fade-up" data-aos-delay="160">
+      <span id="typewriter" class="typewriter text-white"></span>
+    </p>
+
+    <!-- Sub-tagline -->
+    <p class="text-gray-500 max-w-xl mx-auto mb-10 text-base md:text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="240">
+      Building intelligent software solutions — from AI-powered automation workflows to sleek web &amp; mobile products — for startups and small businesses worldwide.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-wrap gap-4 justify-center" data-aos="fade-up" data-aos-delay="320">
+      <a href="#contact" class="btn-primary inline-flex items-center gap-2">
+        <i class="fa-solid fa-paper-plane text-sm"></i>
+        Hire Me
+      </a>
+      <a href="#projects" class="btn-ghost inline-flex items-center gap-2">
+        <i class="fa-solid fa-eye text-sm"></i>
+        View Projects
+      </a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="mt-16 flex flex-wrap justify-center gap-8 text-center" data-aos="fade-up" data-aos-delay="400">
+      <div>
+        <div class="font-display font-extrabold text-3xl grad-text">5+</div>
+        <div class="text-gray-500 text-sm mt-1">Projects Built</div>
+      </div>
+      <div class="w-px bg-white/10 self-stretch hidden sm:block"></div>
+      <div>
+        <div class="font-display font-extrabold text-3xl grad-text">10+</div>
+        <div class="text-gray-500 text-sm mt-1">Technologies</div>
+      </div>
+      <div class="w-px bg-white/10 self-stretch hidden sm:block"></div>
+      <div>
+        <div class="font-display font-extrabold text-3xl grad-text">3+</div>
+        <div class="text-gray-500 text-sm mt-1">Years Coding</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a href="#about" class="scroll-indicator absolute bottom-10 left-1/2 z-10 flex flex-col items-center gap-1 text-gray-600 hover:text-accent transition-colors text-xs tracking-widest uppercase" aria-label="Scroll down">
+    <i class="fa-solid fa-chevron-down text-base"></i>
+  </a>
+</section>
+
+<div class="section-divider my-0"></div>
+
+<!-- ══════════════════════════════════════════
+     ABOUT ME
+═══════════════════════════════════════════ -->
+<section id="about" class="py-28 px-6 relative z-10">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex flex-col md:flex-row gap-16 items-center">
+
+    <div class="shrink-0" data-aos="fade-right">
+        <div class="relative mx-auto" style="width:400px;height:400px;">
+          <!-- Glow ring -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-accent/30 to-accentDim/10 blur-2xl scale-110"></div>
+          <!-- Profile photo -->
+          <div class="relative w-full h-full rounded-full glass border border-white/10 overflow-hidden">
+            <img src="assets/images/profil.jpg" alt="Mohamed Achou" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;" />
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-3 -right-3 glass rounded-2xl px-3 py-2 text-xs font-display font-semibold text-accent border border-accent/20 flex items-center gap-1.5">
+            <i class="fa-solid fa-bolt"></i> Open to Work
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div data-aos="fade-left" data-aos-delay="100">
+        <div class="section-label mb-5">About Me</div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-5 leading-tight">
+          Crafting software<br class="hidden md:block"/> that <span class="grad-text">actually works.</span>
+        </h2>
+        <p class="text-gray-400 leading-relaxed mb-5">
+          I'm a Master's student in Software Engineering at UMBB Boumerdès, Algeria, with a passion for turning complex ideas into elegant, production-ready software. My work sits at the intersection of full-stack development, AI automation, and mobile engineering.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          During my internship in AI Automation, I've built real-world agentic workflows with <strong class="text-white">n8n</strong>, integrated <strong class="text-white">Claude AI</strong> for lead scoring, and shipped Android apps, web platforms, and multi-agent systems — all from scratch.
+        </p>
+
+        <!-- Skills chips -->
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-badge">Full Stack Dev</span>
+          <span class="skill-badge">AI Automation</span>
+          <span class="skill-badge">Android (Java)</span>
+          <span class="skill-badge">n8n Workflows</span>
+          <span class="skill-badge">Clean Code</span>
+          <span class="skill-badge">Agile</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section id="services" class="py-28 px-6 relative z-10">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-label justify-center mb-5">Services</div>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-white leading-tight mb-4">
+        What I <span class="grad-text">build</span> for you
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">From landing pages to intelligent automation systems — I deliver end-to-end solutions that scale.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Service cards -->
+      <div class="glass glass-hover rounded-2xl p-7" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Landing Page</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">High-converting, blazing-fast landing pages with modern design, SEO best practices, and CTA optimization for your product or service.</p>
+        <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-xs text-accent">
+          <i class="fa-solid fa-arrow-right"></i> HTML · CSS · JS · Tailwind
+        </div>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7" data-aos="fade-up" data-aos-delay="60">
+        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Website Development</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Full-featured web platforms with Django, Spring Boot, or Node.js back-ends — REST APIs, databases, auth, admin dashboards and more.</p>
+        <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-xs text-accent">
+          <i class="fa-solid fa-arrow-right"></i> Django · Spring Boot · React
+        </div>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">AI Chatbots</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Custom intelligent chatbots powered by Claude, GPT-4, or Gemini. Integrated into your website, WhatsApp, Telegram, or Facebook Messenger.</p>
+        <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-xs text-accent">
+          <i class="fa-solid fa-arrow-right"></i> Claude AI · Gemini · OpenAI
+        </div>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">n8n Automation</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Eliminate manual repetitive tasks. I build robust n8n workflows connecting your tools — Gmail, Sheets, Telegram, CRMs, APIs — into seamless pipelines.</p>
+        <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-xs text-accent">
+          <i class="fa-solid fa-arrow-right"></i> n8n · Webhooks · APIs
+        </div>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7" data-aos="fade-up" data-aos-delay="60">
+        <div class="service-icon"><i class="fa-brands fa-android"></i></div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Android Development</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Native Android apps built with Java and XML. Multi-language support, clean architecture, Material Design UI, and Play Store-ready delivery.</p>
+        <div class="mt-5 pt-5 border-t border-white/5 flex items-center gap-2 text-xs text-accent">
+          <i class="fa-solid fa-arrow-right"></i> Java · Android Studio · XML
+        </div>
+      </div>
+
+      <!-- CTA card -->
+      <div class="rounded-2xl p-7 flex flex-col justify-between" style="background:linear-gradient(135deg,rgba(110,231,247,.08),rgba(59,130,246,.08));border:1px solid rgba(110,231,247,.15);" data-aos="fade-up" data-aos-delay="120">
+        <div>
+          <div class="text-3xl mb-4">✨</div>
+          <h3 class="font-display font-semibold text-lg text-white mb-2">Custom Project?</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Have something specific in mind? Let's talk about it. I love tackling unique challenges.</p>
+        </div>
+        <a href="#contact" class="btn-primary mt-6 text-center text-sm py-3">Let's Talk</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     FEATURED PROJECTS
+═══════════════════════════════════════════ -->
+<section id="projects" class="py-28 px-6 relative z-10">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-label justify-center mb-5">Projects</div>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-white leading-tight mb-4">
+        Featured <span class="grad-text">Work</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Real projects built with real-world constraints — from mobile apps to AI-powered platforms.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Project 1 -->
+      <a href="projects/tourist-guide.html" class="glass glass-hover rounded-2xl overflow-hidden group block" data-aos="fade-up" data-aos-delay="0">
+        <!-- Screenshot banner — Project 1 -->
+        <!-- ✅ Screenshot: add your image at assets/images/proj1-tourist.png -->
+        <div class="h-48 relative overflow-hidden" style="background:linear-gradient(135deg,#1e3a5f,#0f2040);">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-400/10"></div>
+          <!-- OPTION A — no screenshot yet (default icon) -->
+          <div id="proj1-placeholder" class="w-full h-full flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-map-location-dot text-7xl text-blue-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+          </div>
+          <!-- OPTION B — uncomment when you add the screenshot file -->
+          <!-- <img src="assets/images/proj1-tourist.png" alt="Tourist Guide App" style="width:100%;height:100%;object-fit:cover;object-position:top;" /> -->
+          <div class="absolute top-4 right-4 z-20"><span class="project-tag">Android · Java</span></div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-xl text-white mb-2">Tourist Guide App</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">Multilingual Android app (FR/AR) showcasing Algerian cities with tourist spots, hotels, and restaurants. Dynamic wilaya management with BottomNavigationView.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge text-xs">Java</span>
+            <span class="skill-badge text-xs">Android Studio</span>
+            <span class="skill-badge text-xs">XML Layouts</span>
+            <span class="skill-badge text-xs">Multilingual</span>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;align-items:center;gap:.5rem;color:#6ee7f7;font-family:Syne,sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;">View Details <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></div>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="projects/irrigation.html" class="glass glass-hover rounded-2xl overflow-hidden group block" data-aos="fade-up" data-aos-delay="80">
+        <!-- ✅ Screenshot: add your image at assets/images/proj2-irrigation.png -->
+        <div class="h-48 relative overflow-hidden" style="background:linear-gradient(135deg,#1a3a1f,#0d2010);">
+          <div class="absolute inset-0 bg-gradient-to-br from-green-600/20 to-emerald-400/10"></div>
+          <!-- OPTION A — no screenshot yet (default icon) -->
+          <div id="proj2-placeholder" class="w-full h-full flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-seedling text-7xl text-green-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+          </div>
+          <!-- OPTION B — uncomment when you add the screenshot file -->
+          <!-- <img src="assets/images/proj2-irrigation.png" alt="Smart Irrigation Platform" style="width:100%;height:100%;object-fit:cover;object-position:top;" /> -->
+          <div class="absolute top-4 right-4 z-20"><span class="project-tag">Web · IoT</span></div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-xl text-white mb-2">Smart Irrigation Platform</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">Web platform for managing pivot irrigation in the Algerian Sahara. Real-time monitoring dashboard, field management, and AI-driven optimization recommendations.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge text-xs">Django</span>
+            <span class="skill-badge text-xs">REST API</span>
+            <span class="skill-badge text-xs">IoT</span>
+            <span class="skill-badge text-xs">AI</span>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;align-items:center;gap:.5rem;color:#6ee7f7;font-family:Syne,sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;">View Details <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></div>
+        </div>
+      </a>
+
+      <!-- Project 3 — Table Reservation System -->
+      <a href="projects/reservation.html" class="glass glass-hover rounded-2xl overflow-hidden group block" data-aos="fade-up" data-aos-delay="0">
+        <!-- ✅ Screenshot: add your image at assets/images/proj3-reservation.png -->
+        <div class="h-48 relative overflow-hidden" style="background:linear-gradient(135deg,#0d2a1f,#051a10);">
+          <!-- OPTION A — no screenshot yet (default icon) -->
+          <div id="proj3-placeholder" class="w-full h-full flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-utensils text-6xl text-emerald-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+          </div>
+          <!-- OPTION B — uncomment when you add the screenshot file -->
+          <!-- <img src="assets/images/proj3-reservation.png" alt="Table Reservation System" style="width:100%;height:100%;object-fit:cover;object-position:top;" /> -->
+          <div class="absolute top-4 right-4 z-20"><span class="project-tag">Django · Python</span></div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-xl text-white mb-2">Table Reservation System</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">Full-stack restaurant reservation platform built with Django. Features real-time table availability, booking management dashboard, email confirmations, and an admin panel for restaurant owners.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge text-xs">Django</span>
+            <span class="skill-badge text-xs">Python</span>
+            <span class="skill-badge text-xs">SQLite</span>
+            <span class="skill-badge text-xs">Bootstrap</span>
+            <span class="skill-badge text-xs">HTML/CSS</span>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;align-items:center;gap:.5rem;color:#6ee7f7;font-family:Syne,sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;">View Details <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></div>
+        </div>
+      </a>
+
+      <!-- Project 4 -->
+      <a href="projects/smartleads.html" class="glass glass-hover rounded-2xl overflow-hidden group block" data-aos="fade-up" data-aos-delay="80">
+        <!-- ✅ Screenshot: add your image at assets/images/proj4-smartleads.png -->
+        <div class="h-48 relative overflow-hidden" style="background:linear-gradient(135deg,#2a1a0a,#1a0d05);">
+          <div class="absolute inset-0 bg-gradient-to-br from-orange-600/20 to-yellow-400/10"></div>
+          <!-- OPTION A — no screenshot yet (default icon) -->
+          <div id="proj4-placeholder" class="w-full h-full flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-diagram-project text-7xl text-orange-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+          </div>
+          <!-- OPTION B — uncomment when you add the screenshot file -->
+          <!-- <img src="assets/images/proj4-smartleads.png" alt="AI Automation Workflows" style="width:100%;height:100%;object-fit:cover;object-position:top;" /> -->
+          <div class="absolute top-4 right-4 z-20"><span class="project-tag">n8n · AI</span></div>
+        </div>
+        <div class="p-7">
+          <h3 class="font-display font-bold text-xl text-white mb-2">AI Automation Workflows</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-5">SmartLeads platform — end-to-end AI lead management with n8n pipelines, Claude AI scoring, Gmail/Telegram/Google Sheets integration, and a React dashboard.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge text-xs">n8n</span>
+            <span class="skill-badge text-xs">Claude AI</span>
+            <span class="skill-badge text-xs">React</span>
+            <span class="skill-badge text-xs">Node.js</span>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;align-items:center;gap:.5rem;color:#6ee7f7;font-family:Syne,sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;">View Details <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     TECH STACK
+═══════════════════════════════════════════ -->
+<section id="stack" class="py-28 px-6 relative z-10">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-label justify-center mb-5">Tech Stack</div>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-white leading-tight mb-4">
+        Tools I <span class="grad-text">master</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-10 gap-4" data-aos="fade-up" data-aos-delay="80">
+
+      <!-- Each tech icon -->
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+        <span>HTML5</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+        <span>CSS3</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+        <span>JS</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+        <span>Java</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" />
+        <span>Spring</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+        <span>Python</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" style="filter:invert(1) brightness(0.7);" />
+        <span>Django</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+        <span>React</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android" />
+        <span>Android</span>
+      </div>
+      <div class="tech-item">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style="filter:invert(1) brightness(0.7);" />
+        <span>GitHub</span>
+      </div>
+
+    </div>
+
+    <!-- n8n badge (no devicon) -->
+    <div class="flex justify-center mt-4" data-aos="fade-up" data-aos-delay="120">
+      <div class="tech-item w-auto px-6 flex-row gap-3">
+        <span class="font-display font-extrabold text-xl" style="background:linear-gradient(135deg,#ea4b71,#ff6d00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">n8n</span>
+        <span>n8n Automation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     WHY WORK WITH ME
+═══════════════════════════════════════════ -->
+<section id="why" class="py-28 px-6 relative z-10">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <div class="section-label justify-center mb-5">Why Me</div>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-white leading-tight mb-4">
+        Why work with <span class="grad-text">Mohamed?</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Not just another developer. A committed partner who ships quality software on time.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="glass glass-hover rounded-2xl p-7 text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="feature-num mb-3">01</div>
+        <i class="fa-solid fa-code text-accent text-2xl mb-4 block"></i>
+        <h3 class="font-display font-bold text-white mb-2">Clean Code</h3>
+        <p class="text-gray-500 text-sm">Readable, maintainable, and documented code following SOLID principles and design patterns.</p>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7 text-center" data-aos="fade-up" data-aos-delay="80">
+        <div class="feature-num mb-3">02</div>
+        <i class="fa-solid fa-bolt text-accent text-2xl mb-4 block"></i>
+        <h3 class="font-display font-bold text-white mb-2">Fast Delivery</h3>
+        <p class="text-gray-500 text-sm">I respect deadlines and deliver iteratively so you always know where your project stands.</p>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7 text-center" data-aos="fade-up" data-aos-delay="160">
+        <div class="feature-num mb-3">03</div>
+        <i class="fa-solid fa-mobile-screen text-accent text-2xl mb-4 block"></i>
+        <h3 class="font-display font-bold text-white mb-2">Responsive Design</h3>
+        <p class="text-gray-500 text-sm">Every pixel works flawlessly on mobile, tablet, and desktop. No compromises.</p>
+      </div>
+
+      <div class="glass glass-hover rounded-2xl p-7 text-center" data-aos="fade-up" data-aos-delay="240">
+        <div class="feature-num mb-3">04</div>
+        <i class="fa-solid fa-brain text-accent text-2xl mb-4 block"></i>
+        <h3 class="font-display font-bold text-white mb-2">AI Expertise</h3>
+        <p class="text-gray-500 text-sm">I bring AI augmentation to your workflows — chatbots, scoring, automation — not just buzzwords.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════ -->
+<section id="contact" class="py-28 px-6 relative z-10">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="text-center mb-14" data-aos="fade-up">
+      <div class="section-label justify-center mb-5">Contact</div>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-white leading-tight mb-4">
+        Let's build something <span class="grad-text">together</span>
+      </h2>
+      <p class="text-gray-500 max-w-lg mx-auto">Got a project in mind? Send me a message and I'll get back to you within 24 hours.</p>
+    </div>
+
+    <!-- Social links -->
+    <div class="flex justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="60">
+      <a href="https://github.com/achoumed" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer"
+         class="glass glass-hover w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+        <i class="fa-brands fa-github text-lg"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/achoumed" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer"
+         class="glass glass-hover w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-accent transition-colors" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin text-lg"></i>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&to=achoumed2004@gmail.com" target="_blank" rel="noopener noreferrer"
+         class="glass glass-hover w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-accent transition-colors" aria-label="Email">
+        <i class="fa-solid fa-envelope text-lg"></i>
+      </a>
+      <a href="https://t.me/achoumed" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener noreferrer"
+         class="glass glass-hover w-12 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-accent transition-colors" aria-label="Telegram">
+        <i class="fa-brands fa-telegram text-lg"></i>
+      </a>
+    </div>
+
+    <!-- Contact form + message inbox -->
+    <div class="glass rounded-2xl p-8 md:p-10" data-aos="fade-up" data-aos-delay="120">
+      <form id="contact-form" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-2 tracking-wide uppercase" for="name">Full Name</label>
+            <input id="name" name="name" type="text" required placeholder="John Smith" class="form-field" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-2 tracking-wide uppercase" for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="john@example.com" class="form-field" />
+          </div>
+        </div>
+        <div class="mb-5">
+          <label class="block text-xs font-semibold text-gray-400 mb-2 tracking-wide uppercase" for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" placeholder="Project Inquiry / Collaboration" class="form-field" />
+        </div>
+        <div class="mb-7">
+          <label class="block text-xs font-semibold text-gray-400 mb-2 tracking-wide uppercase" for="message">Message</label>
+          <textarea id="message" name="message" required rows="5" placeholder="Describe your project or idea..." class="form-field resize-none"></textarea>
+        </div>
+        <button type="submit" id="submit-btn" class="btn-primary w-full flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane text-sm"></i>
+          Send Message
+        </button>
+        <p id="form-status" class="hidden text-center text-sm mt-4 text-green-400"></p>
+      </form>
+    </div>
+
+
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="border-t border-white/5 py-10 px-6 relative z-10">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="font-display font-bold text-white flex items-center gap-2">
+      <span class="grad-text">MA</span>
+      <span class="text-white/40 font-normal text-sm">Mohamed Achou</span>
+    </p>
+    <p class="text-gray-600 text-sm">
+      &copy; <span id="year"></span> Mohamed Achou · Algeria 🇩🇿
+    </p>
+    <p class="text-gray-600 text-xs flex items-center gap-1">
+      Built with <span class="text-red-500">♥</span> and clean code
+    </p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+
+<!-- AOS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+/* ── AOS init ── */
+AOS.init({
+  duration: 700,
+  easing: 'ease-out-cubic',
+  once: true,
+  offset: 60,
+});
+
+/* ── Custom cursor ── */
+const cursor     = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let ringX = 0, ringY = 0;
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top  = mouseY + 'px';
+});
+
+(function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top  = ringY + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+/* ── Navbar scroll effect ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ── Mobile menu ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+});
+document.getElementById('mobile-close').addEventListener('click', closeMobileMenu);
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+/* ── Typewriter ── */
+const roles = [
+  'Software Engineer',
+  'AI Automation Specialist',
+  'Full Stack Developer',
+  'Android Developer',
+];
+let ri = 0, ci = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+
+function typeLoop() {
+  const current = roles[ri];
+  tw.textContent = deleting
+    ? current.slice(0, ci--)
+    : current.slice(0, ci++);
+
+  if (!deleting && ci > current.length) {
+    setTimeout(() => { deleting = true; typeLoop(); }, 1800);
+    return;
+  }
+  if (deleting && ci < 0) {
+    deleting = false;
+    ri = (ri + 1) % roles.length;
+    ci = 0;
+  }
+  setTimeout(typeLoop, deleting ? 40 : 80);
+}
+typeLoop();
+
+/* ── Contact form — Web3Forms ── */
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn    = document.getElementById('submit-btn');
+  const status = document.getElementById('form-status');
+
+  const nameVal    = document.getElementById('name').value.trim();
+  const emailVal   = document.getElementById('email').value.trim();
+  const subjectVal = document.getElementById('subject').value.trim();
+  const msgVal     = document.getElementById('message').value.trim();
+
+  // Basic validation
+  if (!nameVal || !emailVal || !msgVal) {
+    status.classList.remove('hidden');
+    status.style.color = '#f87171';
+    status.textContent = '⚠ Please fill in Name, Email and Message.';
+    setTimeout(() => status.classList.add('hidden'), 3500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> Sending…';
+  status.classList.add('hidden');
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '1a7993a1-4fc8-4a3c-bd8e-c0a156bb7833',
+        name:       nameVal,
+        email:      emailVal,
+        subject:    subjectVal || 'New message from Portfolio',
+        message:    msgVal,
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      btn.innerHTML = '<i class="fa-solid fa-check text-sm"></i> Message Sent!';
+      status.classList.remove('hidden');
+      status.style.color = '#4ade80';
+      status.textContent = '✓ Message sent! I will reply within 24 hours.';
+      document.getElementById('contact-form').reset();
+    } else {
+      throw new Error(data.message || 'Unknown error');
+    }
+  } catch(err) {
+    console.error('Web3Forms error:', err);
+    btn.innerHTML = '<i class="fa-solid fa-paper-plane text-sm"></i> Send Message';
+    status.classList.remove('hidden');
+    status.style.color = '#f87171';
+    status.textContent = '✗ Failed to send. Please email me directly at achoumed2004@gmail.com';
+  } finally {
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane text-sm"></i> Send Message';
+      status.classList.add('hidden');
+    }, 5000);
+  }
+});
+
+/* ── Year ── */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── Images loaded via static src (assets/images/) ── */
+
+
+
+</script>
+
+</body>
+</html>
